@@ -15,28 +15,31 @@ struct LoginView: View {
     @State private var errorMessage: String = ""
 
     var body: some View {
-        Form {
-            Section("Login Info") {
-                TextField("Email", text: $email)
-                    .autocapitalization(.none)
+        NavigationView {  // Add this line
+            Form {
+                Section("Login Info") {
+                    TextField("Email", text: $email)
+                        .autocapitalization(.none)
 
-                SecureField("Password", text: $password)
+                    SecureField("Password", text: $password)
+                    
+                    if !errorMessage.isEmpty {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                    }
+                }
                 
-                if !errorMessage.isEmpty {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
+                Button(action: signIn) {
+                    Text("Sign In")
+                }
+                
+                NavigationLink(destination: RegisterView()){
+                    Text("Don't have an account? Register")
+                        .foregroundColor(.blue)
                 }
             }
-            
-            Button(action: signIn) {
-                Text("Sign In")
-            }
-            
-            NavigationLink(destination: RegisterView()){
-                Text("Don't have an account? Register")
-            }
-        }
-        .padding()
+            .padding()
+        }  // And this line
     }
 
     func signIn() {

@@ -43,6 +43,8 @@
 		E02A8FF62AA99D0700E9C86E /* rootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A8FF52AA99D0700E9C86E /* rootView.swift */; };
 		E02A8FF82AA99DF400E9C86E /* register.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A8FF72AA99DF400E9C86E /* register.swift */; };
 		E02A8FFB2AA9B17F00E9C86E /* mian.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A8FFA2AA9B17F00E9C86E /* mian.swift */; };
+		E02A8FFE2AA9C15100E9C86E /* scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A8FFD2AA9C15100E9C86E /* scanner.swift */; };
+		E02A90002AA9C51200E9C86E /* scanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A8FFF2AA9C51200E9C86E /* scanView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E01DA6012AAEE59500070612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E02A8F8F2AA9795000E9C86E /* ios-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E02A8F922AA9795000E9C86E /* ios_devApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_devApp.swift; sourceTree = "<group>"; };
 		E02A8F962AA9795100E9C86E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 		E02A8FF52AA99D0700E9C86E /* rootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rootView.swift; sourceTree = "<group>"; };
 		E02A8FF72AA99DF400E9C86E /* register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = register.swift; sourceTree = "<group>"; };
 		E02A8FFA2AA9B17F00E9C86E /* mian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mian.swift; sourceTree = "<group>"; };
+		E02A8FFD2AA9C15100E9C86E /* scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scanner.swift; sourceTree = "<group>"; };
+		E02A8FFF2AA9C51200E9C86E /* scanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scanView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +158,8 @@
 		E02A8F912AA9795000E9C86E /* ios-dev */ = {
 			isa = PBXGroup;
 			children = (
+				E01DA6012AAEE59500070612 /* Info.plist */,
+				E02A8FFC2AA9BF3B00E9C86E /* scanPage */,
 				E02A8FF92AA9B17100E9C86E /* mainPage */,
 				E02A8FC02AA99A5C00E9C86E /* GoogleService-Info.plist */,
 				E02A8FBD2AA97E8000E9C86E /* email-sys */,
@@ -206,6 +213,15 @@
 				E02A8FFA2AA9B17F00E9C86E /* mian.swift */,
 			);
 			path = mainPage;
+			sourceTree = "<group>";
+		};
+		E02A8FFC2AA9BF3B00E9C86E /* scanPage */ = {
+			isa = PBXGroup;
+			children = (
+				E02A8FFD2AA9C15100E9C86E /* scanner.swift */,
+				E02A8FFF2AA9C51200E9C86E /* scanView.swift */,
+			);
+			path = scanPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,11 +385,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E02A8FF42AA99C3B00E9C86E /* auth-class.swift in Sources */,
+				E02A90002AA9C51200E9C86E /* scanView.swift in Sources */,
 				E02A8FF82AA99DF400E9C86E /* register.swift in Sources */,
 				E02A8FBF2AA97EB800E9C86E /* login.swift in Sources */,
 				E02A8F932AA9795000E9C86E /* ios_devApp.swift in Sources */,
 				E02A8FFB2AA9B17F00E9C86E /* mian.swift in Sources */,
 				E02A8FF62AA99D0700E9C86E /* rootView.swift in Sources */,
+				E02A8FFE2AA9C15100E9C86E /* scanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,8 +546,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ios-dev/Preview Content\"";
+				DEVELOPMENT_TEAM = T4S9HYGVJY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ios-dev/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "We need to access your camera for scanning QR code";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -564,8 +587,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ios-dev/Preview Content\"";
+				DEVELOPMENT_TEAM = T4S9HYGVJY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ios-dev/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "We need to access your camera for scanning QR code";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
