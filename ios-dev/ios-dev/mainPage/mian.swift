@@ -7,29 +7,35 @@
 
 import SwiftUI
 
-struct MainPage: View{
+struct MainPage: View {
     @EnvironmentObject var userAuth: UserAuth
     @State private var showingScanView = false
-    
-    var body: some View{
+    @State private var scanResult = "No QR code detected"
+
+    var body: some View {
         VStack {
             Text("Welcome to the main page")
-            
+
+            // Add this line to display the scan result
+            Text("Scan result: \(scanResult)")
+                .frame(height: 100)
+                .foregroundColor(.green)
+
             Button(action: {
                 userAuth.signOut()
             }) {
                 Text("Sign Out")
                     .frame(width: 100, height: 100)
             }
-            
+
             Button(action: {
-                showingScanView = true  
-            }){
+                showingScanView = true
+            }) {
                 Text("Scan the qr code")
             }
         }
         .sheet(isPresented: $showingScanView) {
-            ScanView(isPresented: $showingScanView)
+                ScanView(isPresented: $showingScanView, scanResultForMainPage: $scanResult)
         }
     }
 }

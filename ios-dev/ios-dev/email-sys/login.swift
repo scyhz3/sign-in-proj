@@ -13,6 +13,12 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var errorMessage: String = ""
+    @State private var error: CustomError? = nil {
+        willSet {
+            showError = newValue != nil
+        }
+    }
+    @State private var showError = false
 
     var body: some View {
         NavigationView {  // Add this line
@@ -29,9 +35,15 @@ struct LoginView: View {
                     }
                 }
                 
-                Button(action: signIn) {
-                    Text("Sign In")
+                Button(action:{
+                    Task {
+                        await signIn()
+                    }
+                }){
+                    Text("Login")
                 }
+                .alert(isPresented: $showError, error: error) {}
+                
                 
                 NavigationLink(destination: RegisterView()){
                     Text("Don't have an account? Register")
@@ -39,14 +51,14 @@ struct LoginView: View {
                 }
             }
             .padding()
-        }  // And this line
+        }
     }
-
-    func signIn() {
-        userAuth.signIn(email: email, password: password) { error in
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-            }
+    
+    func signIn() async {
+        do {
+            try await userAuth.signIn(email: email, password: password)
+        } catch {
+            self.error = .registerError(error.localizedDescription)
         }
     }
 }

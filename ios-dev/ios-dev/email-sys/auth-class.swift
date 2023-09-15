@@ -8,6 +8,18 @@
 import SwiftUI
 import Firebase
 
+enum CustomError: LocalizedError {
+    case registerError(String)
+    
+    var errorDescription: String? {
+        switch self {
+        case .registerError(let reason):
+            return "Unable to register user due to: \(reason)"
+        }
+    }
+}
+
+@MainActor
 class UserAuth: ObservableObject {
     @Published var isLoggedIn = false
 
@@ -15,26 +27,18 @@ class UserAuth: ObservableObject {
         isLoggedIn = Auth.auth().currentUser != nil
     }
 
-    func signIn(email: String, password: String, completion: @escaping (Error?) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            if let error = error {
-                completion(error)
-            } else {
-                self.isLoggedIn = true
-                completion(nil)
-            }
-        }
+    func signIn(email: String, password: String) async throws {
+        let auth = Auth.auth()
+        let result = try await auth.signIn(withEmail: email, password:  password)
+        print(result)
+        self.isLoggedIn = true
     }
-
-    func register(email: String, password: String, completion: @escaping (Error?) -> Void) {
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-            if let error = error {
-                completion(error)
-            } else {
-                self.isLoggedIn = true
-                completion(nil)
-            }
-        }
+    
+    func register(email: String, password: String) async throws {
+        let auth = Auth.auth()
+        let result = try await auth.createUser(withEmail: email, password: password)
+        print(result)
+        self.isLoggedIn = true
     }
 
     func signOut() {

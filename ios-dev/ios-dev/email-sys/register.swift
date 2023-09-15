@@ -10,11 +10,16 @@ import SwiftUI
 import Firebase
 
 struct RegisterView : View {
-    
     @EnvironmentObject var userAuth : UserAuth
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var errorMessage: String = ""
+    @State private var error: CustomError? = nil {
+        willSet {
+            showError = newValue != nil
+        }
+    }
+    @State private var showError = false
     
     var body: some View {
         VStack {
@@ -38,18 +43,22 @@ struct RegisterView : View {
                 }
             }
             
-            Button(action: register) {
+            Button(action:{
+                Task {
+                    await register()
+                }
+            }) {
                 Text("Register")
             }
         }
+        .alert(isPresented: $showError, error: error) {}
     }
     
-    func register() {
-        userAuth.register(email: email, password: password) { error
-            in
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-            }
+    func register() async {
+        do {
+            try await userAuth.register(email: email, password: password)
+        } catch {
+            self.error = .registerError(error.localizedDescription)
         }
     }
 }
