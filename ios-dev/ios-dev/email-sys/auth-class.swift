@@ -22,7 +22,8 @@ enum CustomError: LocalizedError {
 @MainActor
 class UserAuth: ObservableObject {
     @Published var isLoggedIn = false
-
+    private var google = AuthenticationViewModel()
+    
     init() {
         isLoggedIn = Auth.auth().currentUser != nil
     }
@@ -33,6 +34,18 @@ class UserAuth: ObservableObject {
         print(result)
         self.isLoggedIn = true
     }
+    
+    func googleSignIn() {
+        Task {
+            let success = await google.signInWithGoogle()
+            if success {
+                isLoggedIn = true
+            } else {
+                print("Failed to sign in.")
+            }
+        }
+    }
+    
     
     func register(email: String, password: String) async throws {
         let auth = Auth.auth()

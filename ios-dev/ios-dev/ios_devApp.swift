@@ -22,12 +22,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct ios_devApp: App {
     @StateObject private var userAuth = UserAuth()
+    @StateObject private var google = AuthenticationViewModel()
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environmentObject(userAuth)
+                .environmentObject(google)
         }
     }
 }

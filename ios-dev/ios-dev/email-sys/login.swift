@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 struct LoginView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var userAuth : UserAuth
     @State private var email: String = ""
     @State private var password: String = ""
@@ -48,6 +49,20 @@ struct LoginView: View {
                 NavigationLink(destination: RegisterView()){
                     Text("Don't have an account? Register")
                         .foregroundColor(.blue)
+                }
+                
+                Button(action: {
+                    Task {
+                        userAuth.googleSignIn()
+                    }
+                }){
+                    HStack {
+                        Image("Google") // Correct the image name here
+                            .resizable()
+                            .frame(width: 30, height: 30, alignment: .center)
+                        Text("Sign in with Google")
+                            .foregroundColor(.blue)
+                    }
                 }
             }
             .padding()
