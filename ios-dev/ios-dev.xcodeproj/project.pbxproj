@@ -44,9 +44,11 @@
 		E02A8FFB2AA9B17F00E9C86E /* mian.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A8FFA2AA9B17F00E9C86E /* mian.swift */; };
 		E02A8FFE2AA9C15100E9C86E /* scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A8FFD2AA9C15100E9C86E /* scanner.swift */; };
 		E02A90002AA9C51200E9C86E /* scanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A8FFF2AA9C51200E9C86E /* scanView.swift */; };
+		E0512B792AB8333B00D93C9C /* db.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0512B782AB8333B00D93C9C /* db.swift */; };
 		E05AF9692AB426A9003D007F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E05AF9682AB426A9003D007F /* GoogleService-Info.plist */; };
 		E05AF96C2AB42A2C003D007F /* google-login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05AF96B2AB42A2C003D007F /* google-login.swift */; };
 		E05AF96F2AB42DA2003D007F /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E05AF96E2AB42DA2003D007F /* GoogleSignInSwift */; };
+		E0B22CFC2AC6A8D100F76E18 /* loc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B22CFB2AC6A8D100F76E18 /* loc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,8 +87,10 @@
 		E02A8FFA2AA9B17F00E9C86E /* mian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mian.swift; sourceTree = "<group>"; };
 		E02A8FFD2AA9C15100E9C86E /* scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scanner.swift; sourceTree = "<group>"; };
 		E02A8FFF2AA9C51200E9C86E /* scanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scanView.swift; sourceTree = "<group>"; };
+		E0512B782AB8333B00D93C9C /* db.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = db.swift; sourceTree = "<group>"; };
 		E05AF9682AB426A9003D007F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E05AF96B2AB42A2C003D007F /* google-login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "google-login.swift"; sourceTree = "<group>"; };
+		E0B22CFB2AC6A8D100F76E18 /* loc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,7 @@
 				E05AF9682AB426A9003D007F /* GoogleService-Info.plist */,
 				E02A8F962AA9795100E9C86E /* Assets.xcassets */,
 				E02A8F982AA9795100E9C86E /* ios_dev.entitlements */,
+				E0512B772AB8331B00D93C9C /* firestore */,
 				E02A8FFC2AA9BF3B00E9C86E /* scanPage */,
 				E05AF96A2AB42980003D007F /* google-login */,
 				E02A8FF92AA9B17100E9C86E /* mainPage */,
@@ -216,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				E02A8FFA2AA9B17F00E9C86E /* mian.swift */,
+				E0B22CFB2AC6A8D100F76E18 /* loc.swift */,
 			);
 			path = mainPage;
 			sourceTree = "<group>";
@@ -227,6 +233,14 @@
 				E02A8FFF2AA9C51200E9C86E /* scanView.swift */,
 			);
 			path = scanPage;
+			sourceTree = "<group>";
+		};
+		E0512B772AB8331B00D93C9C /* firestore */ = {
+			isa = PBXGroup;
+			children = (
+				E0512B782AB8333B00D93C9C /* db.swift */,
+			);
+			path = firestore;
 			sourceTree = "<group>";
 		};
 		E05AF96A2AB42980003D007F /* google-login */ = {
@@ -406,6 +420,8 @@
 				E02A8FBF2AA97EB800E9C86E /* login.swift in Sources */,
 				E02A8F932AA9795000E9C86E /* ios_devApp.swift in Sources */,
 				E02A8FFB2AA9B17F00E9C86E /* mian.swift in Sources */,
+				E0512B792AB8333B00D93C9C /* db.swift in Sources */,
+				E0B22CFC2AC6A8D100F76E18 /* loc.swift in Sources */,
 				E02A8FF62AA99D0700E9C86E /* rootView.swift in Sources */,
 				E02A8FFE2AA9C15100E9C86E /* scanner.swift in Sources */,
 			);
@@ -569,6 +585,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "We need to access your camera for scanning QR code";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs access to your location to provide better services.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -610,6 +627,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "We need to access your camera for scanning QR code";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs access to your location to provide better services.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

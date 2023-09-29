@@ -6,20 +6,36 @@
 //
 
 import SwiftUI
+import Firebase
+import SystemConfiguration.CaptiveNetwork
+
+
 
 struct MainPage: View {
     @EnvironmentObject var userAuth: UserAuth
     @State private var showingScanView = false
     @State private var scanResult = "No QR code detected"
-
+    @StateObject private var signInManager = SignInManager(userID: Auth.auth().currentUser?.uid ?? "")
+    @StateObject private var locationManager = LocationManager()
+    
     var body: some View {
         VStack {
             Text("Welcome to the main page")
 
+            Text("Latitude: \(locationManager.location?.coordinate.latitude ?? 0)")
+            Text("Longitude: \(locationManager.location?.coordinate.longitude ?? 0)")
             // Add this line to display the scan result
-            Text("Scan result: \(scanResult)")
+//            Text("Scan result: \(scanResult)")
+//                .frame(height: 100)
+//                .foregroundColor(.green)
+            Text(scanResult)
                 .frame(height: 100)
                 .foregroundColor(.green)
+
+            // Add this line to display the sign-in status
+            Text("Sign-in status: \(signInManager.signInStatusText)")
+                .frame(height: 100)
+                .foregroundColor(.red)
 
             Button(action: {
                 userAuth.signOut()
@@ -36,6 +52,20 @@ struct MainPage: View {
         }
         .sheet(isPresented: $showingScanView) {
                 ScanView(isPresented: $showingScanView, scanResultForMainPage: $scanResult)
+        }
+        .onChange(of: scanResult) { newValue in
+            if newValue == "hello world" {
+                signInManager.signIn { error in
+                    if let error = error {
+                        print("Error signing in: \(error)")
+                    } else {
+                        print("Successfully signed in!")
+                    }
+                }
+            }
+        }
+        .onAppear {
+            locationManager.start()
         }
     }
 }

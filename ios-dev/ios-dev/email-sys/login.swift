@@ -38,7 +38,7 @@ struct LoginView: View {
                 
                 Button(action:{
                     Task {
-                        await signIn()
+                        await logIn()
                     }
                 }){
                     Text("Login")
@@ -53,7 +53,7 @@ struct LoginView: View {
                 
                 Button(action: {
                     Task {
-                        userAuth.googleSignIn()
+                        userAuth.googleLogIn()
                     }
                 }){
                     HStack {
@@ -69,7 +69,7 @@ struct LoginView: View {
         }
     }
     
-    func signIn() async {
+    func logIn() async {
         do {
             try await userAuth.signIn(email: email, password: password)
         } catch {

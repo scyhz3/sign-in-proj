@@ -35,7 +35,7 @@ class UserAuth: ObservableObject {
         self.isLoggedIn = true
     }
     
-    func googleSignIn() {
+    func googleLogIn() {
         Task {
             let success = await google.signInWithGoogle()
             if success {
